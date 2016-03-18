@@ -94,7 +94,7 @@ class ACF_Meta_Plugin {
 
 			}
 		}
-		add_action('acf/init', 'acf_add_local_field_group');
+		add_action('acf/init', 'acf_meta_load_field_group');
 
 
 		// set custom title tag
