@@ -1,0 +1,20 @@
+{
+    "name": "aaronrutley/acf-meta",
+    "description": "WordPress plugin to use ACF to set the title & description meta tags.",
+    "keywords": [
+        "wordpress",
+        "seo"
+    ],
+    "type": "wordpress-plugin",
+    "homepage": "https://github.com/AaronRutley/acf-meta",
+    "authors": [
+        {
+            "name": "Aaron Rutley",
+            "homepage": "http://aaronrutley.com/"
+        },
+        {
+            "name": "Vincent Lu",
+            "homepage": "http://rocketmen.io/"
+        }
+    ]
+}
