@@ -2,7 +2,7 @@
 /*
 Plugin Name: ACF Meta
 Plugin URI: http://www.aaronrutley.com/
-Description: Very experimental plugin to use ACF to set the title & description meta fields.
+Description: Very experimental WordPress plugin to use ACF to set the title & description meta tags.
 Version: 0.0.1
 Author: Aaron Rutley
 Author URI: http://www.aaronrutley.com/
