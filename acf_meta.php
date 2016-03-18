@@ -32,7 +32,7 @@ class ACF_Meta_Plugin {
 			$acf_meta_title = get_field( 'acf_meta_title', $post->ID);
 			// check if this post has a title set
 			if(!empty($acf_meta_title)) {
-				return $acf_meta_title;
+				return $acf_meta_title.' - '.get_bloginfo( 'name' );
 			} else {
 				// set a fallback title with a max length of 60 chars
 				$fallback_title = $post->post_title.' - '.get_bloginfo( 'name' );
