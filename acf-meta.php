@@ -15,7 +15,7 @@ class ACF_Meta_Plugin {
 	function __construct()
 	{
 		// Setup a title and description field group
-		function acf_load_meta_field_group() {
+		function acf_meta_load_field_group() {
 
 			if( function_exists('acf_add_local_field_group') ) {
 
@@ -94,11 +94,11 @@ class ACF_Meta_Plugin {
 
 			}
 		}
-		add_action('acf/init', 'acf_load_meta_field_group');
+		add_action('acf/init', 'acf_add_local_field_group');
 
 
 		// set custom title tag
-		function custom_titles( $title, $sep ) {
+		function acf_meta_custom_title( $title, $sep ) {
 			global $post;
 			$acf_meta_title = get_field( 'acf_meta_title', $post->ID);
 			// check if this post has a title set
@@ -111,11 +111,11 @@ class ACF_Meta_Plugin {
 				return $fallback_title_short;
 			}
 		}
-		add_filter( 'wp_title', 'custom_titles', 10, 2 );
+		add_filter( 'wp_title', 'acf_meta_custom_title', 10, 2 );
 
 
 		// set custom meta tags
-		function add_meta_tags() {
+		function acf_meta_custom_tags() {
 		    global $post;
 			$acf_meta_description = get_field( 'acf_meta_description', $post->ID);
 
@@ -124,7 +124,7 @@ class ACF_Meta_Plugin {
 		    	echo '<meta name="description" content="' . $acf_meta_description . '" />' . "\n";
 			}
 		}
-		add_action( 'wp_head', 'add_meta_tags' , 2 );
+		add_action( 'wp_head', 'acf_meta_custom_tags' , 2 );
 
 	}
 
