@@ -41,7 +41,17 @@ class ACF_Meta_Plugin {
 			}
 		}
 		add_filter( 'wp_title', 'acf_meta_custom_title', 10, 2 );
+		function acf_meta_set_title_tag() {
+			function acf_meta_override_title_parts($title) {
+				$title['title'] = acf_meta_custom_title();
+				return $title;
+			}
 
+			if (current_theme_supports('title-tag')) {
+				add_filter('document_title_parts', 'acf_meta_override_title_parts');
+			}
+		}
+		add_action('init', 'acf_meta_set_title_tag');
 
 		// set custom meta tags
 		function acf_meta_custom_tags() {
