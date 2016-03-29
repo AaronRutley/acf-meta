@@ -32,7 +32,7 @@ class ACF_Meta_Plugin {
 
 			// check if we're on the home page
 			if ( is_home() ) {
-				$acf_meta_title = get_bloginfo( 'name' ).' - '.get_bloginfo( 'description' );
+				$acf_meta_title = get_bloginfo( 'name' );
 			} else {
 				$acf_meta_title = get_field( 'acf_meta_title', $post->ID).' - '.get_bloginfo( 'name' );
 			}
@@ -80,8 +80,14 @@ class ACF_Meta_Plugin {
 				echo '<meta property="og:image" content="'.$acf_meta_image_url.'" />' . "\n";
 			}
 
+			// check if we're on the home page
+			if ( is_home() ) {
+				$acf_meta_description = get_bloginfo( 'description' );
+			} else {
+				$acf_meta_description = get_field( 'acf_meta_description', $post->ID);
+			}
+
 			// description tag and og meta tag - if we have a description echo the tag
-			$acf_meta_description = get_field( 'acf_meta_description', $post->ID);
 			if(!empty($acf_meta_description)) {
 				echo '<meta property="og:description" content="'. $acf_meta_description . '" />' . "\n";
 		    	echo '<meta name="description" content="'. $acf_meta_description . '" />' . "\n";
