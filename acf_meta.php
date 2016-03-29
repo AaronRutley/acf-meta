@@ -64,7 +64,11 @@ class ACF_Meta_Plugin {
 
 			// image og meta tag - if we have an image echo the tag
 			$acf_meta_image_array = get_field( 'acf_meta_image', $post->ID);
-			$acf_meta_image_url = $acf_meta_image_array['sizes']['acf_meta_1200'];
+			if (empty($acf_meta_image_array)) {
+				$acf_meta_image_url = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
+			} else {
+				$acf_meta_image_url = $acf_meta_image_array['sizes']['acf_meta_1200'];
+			}
 			if(!empty($acf_meta_image_url)) {
 				echo '<meta property="og:image" content="'.$acf_meta_image_url.'" />' . "\n";
 			}
