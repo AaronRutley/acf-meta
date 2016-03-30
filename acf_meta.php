@@ -30,21 +30,21 @@ class ACF_Meta_Plugin {
 		function acf_meta_custom_title() {
 			global $post;
 
+			// for future refactor so we can bring what to append from settings
+			$appendix = ' - ' . get_bloginfo( 'name' );
+
 			// check if we're on the home page
 			if ( is_home() ) {
-				$acf_meta_title = get_bloginfo( 'name' );
-			} else {
-				$acf_meta_title = get_field( 'acf_meta_title', $post->ID).' - '.get_bloginfo( 'name' );
-			}
+				// on "latest posts" homepage, return site name
+				return get_bloginfo( 'name' );
 
-			// check if this post has a title set
-			if(!empty($acf_meta_title)) {
-				return $acf_meta_title;
+			} else if ($acf_meta_title = get_field( 'acf_meta_title', $post->ID )) {
+				// acf meta title set, return with site name appended
+				return $acf_meta_title . $appendix;
+
 			} else {
-				// set a fallback title with a max length of 60 chars
-				$fallback_title = $post->post_title.' - '.get_bloginfo( 'name' );
-				$fallback_title_short = mb_strimwidth($fallback_title, 0, 60);
-				return $fallback_title_short;
+				// fallback to shortened post title with site name appended
+				return mb_strimwidth($post->post_title, 0, 60) . $appendix;
 			}
 		}
 		add_filter( 'wp_title', 'acf_meta_custom_title', 10, 2 );
